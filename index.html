@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora 5 Dígitos</title>
+</head>
+<body>
+    <h2>Calculadora (Enteros de 5 dígitos)</h2>
+    <input type="number" id="num1" min="-99999" max="99999" placeholder="Número 1 (-99999 a 99999)">
+    <select id="operacion">
+        <option value="+">Suma (+)</option>
+        <option value="-">Resta (-)</option>
+        <option value="*">Multiplicación (*)</option>
+        <option value="^">Potencia (^)</option>
+    </select>
+    <input type="number" id="num2" min="-99999" max="99999" placeholder="Número 2 (-99999 a 99999)">
+    <button onclick="calcular()">Calcular</button>
+    <p id="resultado"></p>
+
+    <script>
+        function calcular() {
+            const n1 = Number(document.getElementById("num1").value);
+            const n2 = Number(document.getElementById("num2").value);
+            const op = document.getElementById("operacion").value;
+            const res = document.getElementById("resultado");
+
+            if (!Number.isInteger(n1) || !Number.isInteger(n2) || n1 < -99999 || n1 > 99999 || n2 < -99999 || n2 > 99999) {
+                res.textContent = "Error: Solo se permiten enteros entre -99999 y 99999.";
+                return;
+            }
+
+            let total;
+            if (op === "+") total = n1 + n2;
+            else if (op === "-") total = n1 - n2;
+            else if (op === "*") total = n1 * n2;
+            else if (op === "^") total = Math.pow(n1, n2);
+
+            res.textContent = "Resultado: " + total;
+        }
+    </script>
+</body>
+</html>
